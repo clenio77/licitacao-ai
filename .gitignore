@@ -1,45 +1,28 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.env
-.env
-.env.*
-*.sqlite3
-data/
+# Backend Python
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.env
+
+# Ignorar ambientes virtuais em qualquer lugar
 venv/
 .venv/
 
-# Node/React
-node_modules/
-build/
-dist/
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# VSCode/IDE
-.vscode/
-.idea/
-*.swp
+# Frontend Node/React
+frontend/node_modules/
+frontend/.env
 
 # Dados e arquivos temporários
-*.log
-*.tmp
-*.bak
+data/
+*.sqlite3
 *.db
-backend/data/
 
-# Docker
-*.pid
-*.seed
-
-# Outros
+# Sistema operacional
 .DS_Store
 Thumbs.db
 
-# Não versionar chaves e arquivos sensíveis
-*.key
-*.pem 
+# Outros
+*.log
+.env
