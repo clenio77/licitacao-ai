@@ -8,8 +8,10 @@ load_dotenv()
 
 # Diretório base do projeto
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.abspath(os.path.join(BASE_DIR, '../../data'))
+os.makedirs(DATA_DIR, exist_ok=True)
 # Caminho do arquivo do banco SQLite3
-DB_PATH = os.path.join(BASE_DIR, '../../data/licitacoes.db')
+DB_PATH = os.path.join(DATA_DIR, 'licitacoes.db')
 # URL de conexão para o SQLAlchemy
 DATABASE_URL = f"sqlite:///{DB_PATH}"
 
