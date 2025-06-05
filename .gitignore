@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+.env.*
+*.sqlite3
+data/
+venv/
+.venv/
+
+# Node/React
+node_modules/
+build/
+dist/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# VSCode/IDE
+.vscode/
+.idea/
+*.swp
+
+# Dados e arquivos temporários
+*.log
+*.tmp
+*.bak
+*.db
+backend/data/
+
+# Docker
+*.pid
+*.seed
+
+# Outros
+.DS_Store
+Thumbs.db
+
+# Não versionar chaves e arquivos sensíveis
+*.key
+*.pem 
