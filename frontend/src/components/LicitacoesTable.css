@@ -1,0 +1,207 @@
+.licitacoes-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 32px;
+}
+
+.licitacoes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-size: 1em;
+  min-width: 1100px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.licitacoes-table th, .licitacoes-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+  min-width: 100px;
+}
+
+.licitacoes-table th {
+  background: #f5faff;
+  color: #007bff;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.licitacoes-table tr:hover {
+  background: #f0f8ff;
+}
+
+.licitacoes-table th.objeto-col,
+.licitacoes-table td.objeto-col {
+  width: 40%;
+  min-width: 320px;
+  max-width: 600px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.licitacoes-table th.resumo-col,
+.licitacoes-table td.resumo-col {
+  width: 30%;
+  min-width: 220px;
+  max-width: 400px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.objeto-col {
+  font-weight: 500;
+  color: #003366;
+  max-width: 420px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+@media (max-width: 900px) {
+  .licitacoes-table {
+    font-size: 0.95em;
+    min-width: 800px;
+  }
+}
+
+@media (max-width: 600px) {
+  .licitacoes-table {
+    font-size: 0.9em;
+    min-width: 600px;
+  }
+}
+
+.licitacao-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.licitacao-modal {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  max-width: 600px;
+  width: 98%;
+  padding: 32px 28px 28px 28px;
+  position: relative;
+  animation: modalIn 0.18s ease;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.licitacao-modal h2 {
+  font-size: 1.35em;
+  margin-bottom: 18px;
+  color: #007bff;
+  font-weight: 700;
+}
+.licitacao-modal-content {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  max-height: 60vh;
+  padding-right: 6px;
+}
+.modal-section {
+  margin-top: 0;
+  padding: 16px 14px 12px 14px;
+  border-radius: 8px;
+  background: #f5faff;
+  border-left: 5px solid #007bff;
+  box-shadow: 0 1px 4px rgba(0,123,255,0.04);
+}
+.modal-section h3 {
+  color: #0056b3;
+  font-size: 1.13em;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+.licitacao-modal-content p {
+  margin: 0 0 8px 0;
+  color: #222;
+  font-size: 1.04em;
+}
+.licitacao-modal-content strong {
+  color: #007bff;
+}
+.pontos-atencao-modal {
+  background: #fff9e6;
+  border: 1px solid #ffeeba;
+  border-left: 5px solid #ffc107;
+  padding: 12px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.pontos-atencao-modal h4 {
+  color: #856404;
+  margin-top: 0;
+  font-size: 1.1em;
+}
+.pontos-atencao-modal ul {
+  list-style-type: disc;
+  padding-left: 22px;
+  margin: 8px 0 0;
+}
+.pontos-atencao-modal li {
+  color: #856404;
+  margin-bottom: 4px;
+}
+.modal-risco-geral {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  color: #fff;
+}
+.risco-baixo {
+  background: #28a745;
+}
+.risco-médio, .risco-medio {
+  background: #ffc107;
+  color: #333;
+}
+.risco-alto {
+  background: #dc3545;
+}
+.risco-label-modal {
+  margin-right: 8px;
+  font-size: 1.05em;
+  font-weight: 600;
+}
+.modal-juridica {
+  background: #f9f9ff;
+  border-left: 5px solid #007bff;
+  padding-left: 12px;
+  border-radius: 6px;
+}
+.btn-gerar-analise {
+  background: linear-gradient(90deg, #007bff 60%, #0056b3 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1.08em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,123,255,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-gerar-analise:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.btn-gerar-analise:hover:not(:disabled) {
+  background: linear-gradient(90deg, #0056b3 60%, #007bff 100%);
+  box-shadow: 0 4px 12px rgba(0,123,255,0.13);
+} 

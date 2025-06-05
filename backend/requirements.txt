@@ -1,0 +1,18 @@
+crewai==0.121.1
+crewai_tools==0.46.0
+fastapi
+uvicorn
+playwright
+beautifulsoup4
+pandas
+embedchain>=0.1.114
+requests
+sqlalchemy
+chromadb>=0.5.23
+tokenizers
+gunicorn
+python-multipart
+python-dotenv
+
+# Para rodar o LlamaIndex localmente, baixe um modelo compatível (ex: Llama 2, Mistral, Vicuna) e coloque em ./models/
+# Exemplo de modelo: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML

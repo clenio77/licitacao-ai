@@ -1,0 +1,27 @@
+ # backend/data/lei_14133_2021.txt
+# Este é um TEXTO SIMULADO da Lei 14.133/2021 para fins de MVP.
+# Para uso real, este arquivo DEVE conter o texto completo e relevante da lei.
+# Você pode copiar e colar partes relevantes ou a lei inteira aqui.
+
+**Lei nº 14.133/2021 - Lei de Licitações e Contratos Administrativos**
+
+**Art. 1º** Esta Lei estabelece normas gerais de licitação e contratação para as Administrações Públicas diretas, autárquicas e fundacionais da União, dos Estados, do Distrito Federal e dos Municípios.
+
+**Art. 2º** As licitações e contratações serão realizadas com observância dos princípios da legalidade, da impessoalidade, da moralidade, da publicidade, da eficiência, do interesse público, da probidade administrativa, da igualdade, do planejamento, da transparência, da eficácia, da segregação de funções, da motivação, da vinculação ao instrumento convocatório, do julgamento objetivo e da razoabilidade.
+
+**Art. 17.** O processo de licitação observará as seguintes fases:
+I - preparatória;
+II - de divulgação do edital de licitação;
+III - de apresentação de propostas e lances, quando for o caso;
+IV - de julgamento;
+V - de habilitação;
+VI - recursal;
+VII - de homologação.
+
+**Art. 25.** A modalidade de licitação concorrência é obrigatória para a contratação de bens e serviços especiais e de obras e serviços comuns e especiais de engenharia, ressalvadas as hipóteses previstas nesta Lei.
+
+**Art. 30.** A licitação por pregão é utilizada para a contratação de bens e serviços comuns, qualquer que seja o valor estimado.
+
+**Art. 43.** As condições de participação serão definidas no edital e deverão ser compatíveis com o objeto da licitação.
+
+**Art. 60.** A fase de habilitação avaliará as condições do licitante para participar da licitação, tais como capacidade jurídica, técnica, econômico-financeira e regularidade fiscal e trabalhista.
