@@ -11,6 +11,11 @@ from web_scraping.mcp_playwright import search_new_licitacoes_correios
 import openai
 from dotenv import load_dotenv
 
+# Importar novos endpoints para geração de editais
+from api.edital_endpoints import router as edital_router
+from api.scraping_endpoints import router as scraping_router
+from api.feedback_endpoints import router as feedback_router
+
 load_dotenv()
 
 # Modelos Pydantic para validação e documentação da API
@@ -60,7 +65,16 @@ class BuscaLicitacoesRequest(BaseModel):
     data_final: Optional[str] = None
 
 # Instancia a aplicação FastAPI
-app = FastAPI(title="API de Gestão de Licitações Correio MVP")
+app = FastAPI(
+    title="Sistema de Licitações dos Correios",
+    description="API para busca, análise e geração de licitações dos Correios",
+    version="2.0.0"
+)
+
+# Incluir routers dos novos endpoints
+app.include_router(edital_router)
+app.include_router(scraping_router)
+app.include_router(feedback_router)
 
 # Habilitar CORS para que o frontend React possa se comunicar
 app.add_middleware(

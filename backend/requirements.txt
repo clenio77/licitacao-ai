@@ -1,18 +1,32 @@
+# Framework Web
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Banco de Dados
+sqlalchemy==2.0.23
+
+# IA e Machine Learning
 crewai==0.121.1
 crewai_tools==0.46.0
-fastapi
-uvicorn
-playwright
-beautifulsoup4
-pandas
+openai==1.3.7
 embedchain>=0.1.114
-requests
-sqlalchemy
 chromadb>=0.5.23
 tokenizers
-gunicorn
-python-multipart
-python-dotenv
+
+# Web Scraping
+playwright==1.40.0
+beautifulsoup4==4.12.2
+requests==2.31.0
+
+# Processamento de Dados
+pandas==2.1.4
+
+# Utilitários
+python-dotenv==1.0.0
+python-multipart==0.0.6
+
+# Servidor
+gunicorn==21.2.0
 
 # Para rodar o LlamaIndex localmente, baixe um modelo compatível (ex: Llama 2, Mistral, Vicuna) e coloque em ./models/
 # Exemplo de modelo: https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML

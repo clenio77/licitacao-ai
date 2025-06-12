@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, Float, JSON
+from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, Float, JSON, Boolean
 from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 from dotenv import load_dotenv
@@ -88,6 +88,135 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# === NOVOS MODELOS PARA GERAÇÃO DE EDITAIS ===
+
+class EditalRequest(Base):
+    """
+    Modelo para solicitações de geração de edital.
+    Armazena os dados de entrada fornecidos pela equipe de compras.
+    """
+    __tablename__ = "edital_requests"
+
+    id = Column(String, primary_key=True, index=True)
+    objeto = Column(Text, nullable=False)
+    tipo_licitacao = Column(String, nullable=False)  # concorrencia, pregao, etc
+    modalidade = Column(String, nullable=False)  # presencial, eletronica, hibrida
+    categoria = Column(String, nullable=False)  # bens, servicos, obras, etc
+
+    # Dados do setor requisitante (JSON)
+    setor_requisitante = Column(JSON, nullable=False)
+
+    # Itens e requisitos (JSON)
+    itens = Column(JSON, nullable=False)
+    requisitos_tecnicos = Column(JSON, nullable=True)
+    requisitos_juridicos = Column(JSON, nullable=True)
+
+    # Valores e prazos
+    valor_total_estimado = Column(Float, nullable=True)
+    prazo_execucao = Column(Integer, nullable=True)
+    prazo_proposta = Column(Integer, default=7)
+
+    # Configurações
+    permite_consorcio = Column(Boolean, default=False)
+    exige_visita_tecnica = Column(Boolean, default=False)
+    criterio_julgamento = Column(String, default="menor_preco")
+
+    # Metadados
+    observacoes = Column(Text, nullable=True)
+    referencias_editais = Column(JSON, nullable=True)
+    data_criacao = Column(DateTime, default=datetime.now)
+    criado_por = Column(String, nullable=False)
+    status = Column(String, default="pendente")  # pendente, processando, concluido, erro
+
+class EditalGerado(Base):
+    """
+    Modelo para editais gerados pelo sistema.
+    Armazena o resultado completo da geração incluindo análises.
+    """
+    __tablename__ = "editais_gerados"
+
+    id = Column(String, primary_key=True, index=True)
+    numero_edital = Column(String, nullable=True, index=True)
+    request_id = Column(String, nullable=False, index=True)  # FK para EditalRequest
+
+    # Análises realizadas (JSON)
+    analise_juridica = Column(JSON, nullable=False)
+    analise_tecnica = Column(JSON, nullable=False)
+    analise_financeira = Column(JSON, nullable=False)
+    analise_risco = Column(JSON, nullable=False)
+
+    # Conteúdo do edital
+    conteudo_edital = Column(Text, nullable=False)
+    anexos = Column(JSON, nullable=True)
+
+    # Metadados
+    status = Column(String, default="rascunho")  # rascunho, em_analise, aprovado, publicado, cancelado
+    data_criacao = Column(DateTime, default=datetime.now)
+    data_modificacao = Column(DateTime, nullable=True)
+    criado_por = Column(String, nullable=False)
+    versao = Column(Integer, default=1)
+
+    # Histórico e aprendizado
+    editais_referencia = Column(JSON, nullable=True)
+    melhorias_aplicadas = Column(JSON, nullable=True)
+
+class HistoricoEdital(Base):
+    """
+    Modelo para histórico de sucessos/fracassos de editais.
+    Base de conhecimento para melhorar futuras gerações.
+    """
+    __tablename__ = "historico_editais"
+
+    id = Column(String, primary_key=True, index=True)
+    id_edital = Column(String, nullable=False, index=True)
+    objeto = Column(Text, nullable=False)
+    categoria = Column(String, nullable=False)
+    tipo_licitacao = Column(String, nullable=False)
+
+    # Resultado
+    sucesso = Column(Boolean, nullable=False)
+    motivo_fracasso = Column(Text, nullable=True)
+    licoes_aprendidas = Column(JSON, nullable=True)
+
+    # Dados do resultado
+    data_resultado = Column(DateTime, nullable=False)
+    valor_contratado = Column(Float, nullable=True)
+    numero_propostas = Column(Integer, nullable=True)
+
+    # Análise do fracasso/sucesso
+    fatores_sucesso = Column(JSON, nullable=True)
+    fatores_fracasso = Column(JSON, nullable=True)
+
+    # Metadados
+    data_criacao = Column(DateTime, default=datetime.now)
+    criado_por = Column(String, nullable=False)
+
+class TemplateEdital(Base):
+    """
+    Modelo para templates de editais por categoria.
+    Templates base para geração automática.
+    """
+    __tablename__ = "templates_editais"
+
+    id = Column(String, primary_key=True, index=True)
+    nome = Column(String, nullable=False)
+    categoria = Column(String, nullable=False, index=True)
+    tipo_licitacao = Column(String, nullable=False)
+
+    # Template
+    conteudo_template = Column(Text, nullable=False)
+    variaveis = Column(JSON, nullable=True)  # Lista de variáveis do template
+
+    # Configurações
+    ativo = Column(Boolean, default=True)
+    data_criacao = Column(DateTime, default=datetime.now)
+    versao = Column(String, default="1.0")
+    criado_por = Column(String, nullable=False)
+
+    # Metadados de uso
+    vezes_usado = Column(Integer, default=0)
+    taxa_sucesso = Column(Float, nullable=True)  # Taxa de sucesso dos editais gerados
 
 if __name__ == "__main__":
     # Exemplo de uso para criar tabelas e testar a conexão

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LicitacaoCard from './components/LicitacaoCard';
 import LicitacoesTable from './components/LicitacoesTable';
+import GerarEdital from './pages/GerarEdital';
+import BaseConhecimento from './pages/BaseConhecimento';
+import Feedback from './pages/Feedback';
 import './App.css';
 
-// Componente principal da aplicação React
-function App() {
+// Componente para a página de análise de licitações (página original)
+function LicitacoesAnalise() {
   // Estados para controle de dados, filtros, busca manual e status
   const [licitacoes, setLicitacoes] = useState([]); // Lista de licitações carregadas da API
   const [loading, setLoading] = useState(true); // Status de carregamento
@@ -113,13 +117,19 @@ function App() {
   const licitacoesComAtencaoJuridica = licitacoes.filter(l => l.pontos_de_atencao_juridica && l.pontos_de_atencao_juridica.length > 0).length;
   const licitacoesComRiscoAltoOuMedio = licitacoes.filter(l => l.risco_geral && (l.risco_geral.toLowerCase() === 'alto' || l.risco_geral.toLowerCase() === 'médio')).length;
 
-  // JSX principal da aplicação
+  // JSX principal da página de análise
   return (
     <div className="App">
       {/* Cabeçalho do site */}
       <header className="App-header">
-        <h1>Gestão de Licitações Correio (MVP)</h1>
+        <h1>📊 Análise de Licitações dos Correios</h1>
         <p>Dados processados automaticamente por Agentes Inteligentes</p>
+        <nav className="header-nav">
+          <Link to="/" className="nav-link">📊 Análise</Link>
+          <Link to="/gerar-edital" className="nav-link">📝 Gerar Edital</Link>
+          <Link to="/base-conhecimento" className="nav-link">🧠 Base de Conhecimento</Link>
+          <Link to="/feedback" className="nav-link">💬 Feedback</Link>
+        </nav>
       </header>
       <main className="main-content">
         {/* KPIs */}
@@ -218,6 +228,22 @@ function App() {
         <p>Desenvolvido com CrewAI, Playwright, PostgreSQL e React</p>
       </footer>
     </div>
+  );
+}
+
+// Componente principal da aplicação com roteamento
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LicitacoesAnalise />} />
+          <Route path="/gerar-edital" element={<GerarEdital />} />
+          <Route path="/base-conhecimento" element={<BaseConhecimento />} />
+          <Route path="/feedback" element={<Feedback />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
