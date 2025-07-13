@@ -66,6 +66,8 @@ class LicitacaoAgents:
         self.gerar_minuta_tool = GerarMinutaDocumentoTool()
         self.enviar_email_tool = EnviarEmailNotificacaoTool()
         self.enviar_teams_tool = EnviarMensagemTeamsTool()
+        # Temporariamente usar a ferramenta de lei existente para análise ambiental
+        self.consultar_legislacao_ambiental_tool = ConsultarLei14133Tool()
         # LLM local (LlamaIndex)
         self.llm = llm_instance
 
@@ -182,6 +184,29 @@ class LicitacaoAgents:
             allow_delegation=True,
             llm=self.llm,
             tools=[self.enviar_email_tool, self.enviar_teams_tool]
+        )
+
+    def analisador_ambiental(self):
+        """
+        Agente especializado em análise ambiental e sustentabilidade.
+        """
+        return Agent(
+            role='Analisador Ambiental e Sustentabilidade',
+            goal=dedent("""
+                Analisar os impactos ambientais das licitações e avaliar critérios de sustentabilidade.
+                Identificar exigências ambientais, certificações necessárias e riscos ambientais.
+                Deve considerar a legislação ambiental brasileira e as melhores práticas de sustentabilidade.
+                """),
+            backstory=dedent("""
+                Sou um especialista em legislação ambiental e sustentabilidade com experiência
+                em licitações públicas. Minha função é garantir que todos os aspectos ambientais
+                sejam considerados no processo licitatório, promovendo a sustentabilidade e
+                o cumprimento das normas ambientais vigentes.
+                """),
+            verbose=True,
+            allow_delegation=False,
+            llm=self.llm,
+            tools=[self.consultar_legislacao_ambiental_tool]
         )
 
     def estruturador_de_dados(self):

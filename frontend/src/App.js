@@ -5,6 +5,7 @@ import LicitacoesTable from './components/LicitacoesTable';
 import GerarEdital from './pages/GerarEdital';
 import BaseConhecimento from './pages/BaseConhecimento';
 import Feedback from './pages/Feedback';
+import NovaRequisicao from './pages/NovaRequisicao';
 import './App.css';
 
 // Componente para a página de análise de licitações (página original)
@@ -126,7 +127,8 @@ function LicitacoesAnalise() {
         <p>Dados processados automaticamente por Agentes Inteligentes</p>
         <nav className="header-nav">
           <Link to="/" className="nav-link">📊 Análise</Link>
-          <Link to="/gerar-edital" className="nav-link">📝 Gerar Edital</Link>
+          <Link to="/nova-requisicao" className="nav-link">📝 Nova Requisição</Link>
+          <Link to="/gerar-edital" className="nav-link">� Gerar Edital</Link>
           <Link to="/base-conhecimento" className="nav-link">🧠 Base de Conhecimento</Link>
           <Link to="/feedback" className="nav-link">💬 Feedback</Link>
         </nav>
@@ -238,6 +240,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<LicitacoesAnalise />} />
+          <Route path="/nova-requisicao" element={<NovaRequisicao />} />
           <Route path="/gerar-edital" element={<GerarEdital />} />
           <Route path="/base-conhecimento" element={<BaseConhecimento />} />
           <Route path="/feedback" element={<Feedback />} />

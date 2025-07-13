@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from api.edital_endpoints import router as edital_router
 from api.scraping_endpoints import router as scraping_router
 from api.feedback_endpoints import router as feedback_router
+from api.requisicoes_endpoints import router as requisicoes_router
 
 load_dotenv()
 
@@ -75,6 +76,7 @@ app = FastAPI(
 app.include_router(edital_router)
 app.include_router(scraping_router)
 app.include_router(feedback_router)
+app.include_router(requisicoes_router)
 
 # Habilitar CORS para que o frontend React possa se comunicar
 app.add_middleware(
